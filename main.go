@@ -8,6 +8,6 @@ import (
 
 
 func main()  {
-	examples.DisplayDate()
-	examples.DescribeFile()
+	examples.PrintCurrentTime()
+	examples.PrintTimeInFuture(5)
 }

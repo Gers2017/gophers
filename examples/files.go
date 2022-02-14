@@ -6,13 +6,14 @@ import (
 	"strings"
 )
 
-func readFile(name string) string {
+func readFile(name string) (string, error) {
 	content, err := ioutil.ReadFile(name)
 	text := string(content)
 	if err != nil {
 		fmt.Printf("Error cannot read %v\n", name)
+		return "", err
 	}
-	return text
+	return text, nil
 }
 
 func DescribeFile() {
@@ -21,7 +22,11 @@ func DescribeFile() {
 	isVerbose := ""
 	fmt.Scan(&isVerbose)
 
-	text := readFile("examples/readme.txt.test")
+	text, err := readFile("examples/readme.txt.test")
+
+	if err != nil { 
+		return
+	 }
 	
 	if strings.ToLower(isVerbose) == "y" {
 		fmt.Println(strings.Repeat("---", 12))
